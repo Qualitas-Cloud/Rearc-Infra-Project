@@ -24,17 +24,17 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2  # Replace with your AWS region
+        aws-region: us-east-1  # Replace with your AWS region
 
     - name: Terraform Init
       run: terraform init
-      working-directory: ./reac_infra  # Update with the path to your Terraform code
+      working-directory: reac_infra  # Update with the path to your Terraform code
 
     - name: Terraform Plan
       run: terraform plan -out=tfplan
-      working-directory: ./reac_infra  # Update with the path to your Terraform code
+      working-directory: reac_infra  # Update with the path to your Terraform code
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'  # Only apply on main branch
       run: terraform apply -auto-approve tfplan
-      working-directory: ./reac_infra  # Update with the path to your Terraform code
+      working-directory: reac_infra  # Update with the path to your Terraform code
