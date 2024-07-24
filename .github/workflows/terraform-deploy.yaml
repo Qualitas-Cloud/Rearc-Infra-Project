@@ -28,13 +28,13 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      working-directory: reac_infra  # Update with the path to your Terraform code
+      working-directory: src  # Update with the path to your Terraform code
 
     - name: Terraform Plan
       run: terraform plan -out=tfplan
-      working-directory: reac_infra  # Update with the path to your Terraform code
+      working-directory: src  # Update with the path to your Terraform code
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'  # Only apply on main branch
       run: terraform apply -auto-approve tfplan
-      working-directory: reac_infra  # Update with the path to your Terraform code
+      working-directory: src  # Update with the path to your Terraform code
