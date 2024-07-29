@@ -1,4 +1,4 @@
-name: Terraform Deploy
+name: Terraform Destroy
 
 on:
   push:
@@ -30,11 +30,11 @@ jobs:
       run: terraform init
       working-directory: src  # Update with the path to your Terraform code
 
-    - name: Terraform Plan
-      run: terraform plan -destrory -out=tfplan
+    - name: Terraform Plan Destroy
+      run: terraform plan -destroy -out=tfplan
       working-directory: src  # Update with the path to your Terraform code
 
     - name: Terraform Destroy
-      if: github.ref == 'refs/heads/main'  # Only apply on main branch
-      run: terraform destroy -auto-approve tfplan
+      if: github.ref == 'refs/heads/main'  # Only destroy on main branch
+      run: terraform apply -auto-approve tfplan
       working-directory: src  # Update with the path to your Terraform code
