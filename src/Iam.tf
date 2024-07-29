@@ -1,5 +1,5 @@
 module "eks_admins_iam_role" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "5.3.1"
 
   trusted_role_arns = [
@@ -54,6 +54,6 @@ data "aws_iam_policy_document" "eks_access" {
 
 resource "aws_iam_role_policy" "eks_access" {
   name   = "eks-access"
-  role   = module.eks_admins_iam_role.role_name
+  role   = module.eks_admins_iam_role.this_iam_role_name
   policy = data.aws_iam_policy_document.eks_access.json
 }
