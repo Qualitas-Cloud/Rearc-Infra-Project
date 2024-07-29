@@ -2,15 +2,17 @@ module "eks_admins_iam_role" {
   source = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "5.3.1"
 
-  role_name         = "eks-admin"
-  create_role       = true
-  role_requires_mfa = false
-
-  custom_role_policy_arns = [aws_iam_policy.allow_eks_access.arn]
-
   trusted_role_arns = [
     "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
   ]
+
+  create_role = true
+
+  role_name         = "eks-admin"
+  role_requires_mfa = false
+
+  custom_role_policy_arns = [aws_iam_policy.allow_eks_access.arn]
+  number_of_custom_role_policy_arns = 1
 }
 
 resource "aws_iam_policy" "allow_eks_access" {
