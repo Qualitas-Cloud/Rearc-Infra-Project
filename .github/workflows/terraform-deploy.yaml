@@ -31,10 +31,10 @@ jobs:
       working-directory: src  # Update with the path to your Terraform code
 
     - name: Terraform Plan
-      run: terraform plan -out=tfplan
+      run: terraform plan -destrory -out=tfplan
       working-directory: src  # Update with the path to your Terraform code
 
-    - name: Terraform Apply
+    - name: Terraform Destroy
       if: github.ref == 'refs/heads/main'  # Only apply on main branch
-      run: terraform apply -auto-approve tfplan
+      run: terraform destroy -auto-approve tfplan
       working-directory: src  # Update with the path to your Terraform code
