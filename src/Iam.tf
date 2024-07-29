@@ -1,5 +1,5 @@
 module "eks_admins_iam_role" {
-  source = "terraform-aws-modules/iam//modules/iam-assumable-role"
+  source = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
   version = "5.3.1"
 
   role_name         = "eks-admin"
