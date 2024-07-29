@@ -31,3 +31,4 @@ output "cluster_name" {
   value       = local.cluster_name
   description = "Name of the EKS cluster"
 }
+
