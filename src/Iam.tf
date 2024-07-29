@@ -6,12 +6,37 @@ module "eks_admins_iam_role" {
   create_role       = true
   role_requires_mfa = false
 
-  custom_role_policy_arns = [module.allow_eks_access_iam_policy.arn]
+  custom_role_policy_arns = [aws_iam_policy.allow_eks_access.arn]
 
   trusted_role_arns = [
-    "arn:aws:iam::${module.vpc.vpc_owner_id}:root"
+    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
   ]
 }
+
+resource "aws_iam_policy" "allow_eks_access" {
+  name        = "AllowEKSAccess"
+  description = "Policy to allow EKS access"
+  
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "eks:DescribeCluster",
+          "eks:ListClusters",
+          "eks:DescribeNodegroup",
+          "eks:ListNodegroups",
+          "eks:DescribeFargateProfile",
+          "eks:ListFargateProfiles"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "eks_access" {
   statement {
@@ -30,5 +55,3 @@ resource "aws_iam_role_policy" "eks_access" {
   role   = module.eks_admins_iam_role.role_name
   policy = data.aws_iam_policy_document.eks_access.json
 }
-
-data "aws_caller_identity" "current" {}
