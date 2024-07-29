@@ -30,6 +30,10 @@ jobs:
       run: terraform init
       working-directory: src  # Update with the path to your Terraform code
 
+    - name: Terraform Validate
+      run: terraform validate
+      working-directory: src  # Update with the path to your Terraform code
+
     - name: Terraform Plan Destroy
       run: terraform plan -destroy -out=tfplan
       working-directory: src  # Update with the path to your Terraform code
