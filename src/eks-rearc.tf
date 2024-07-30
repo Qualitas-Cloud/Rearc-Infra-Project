@@ -84,6 +84,6 @@ data "aws_iam_policy_document" "eks_access" {
 
 resource "aws_iam_role_policy" "eks_access" {
   name   = "eks-access"
-  role   = module.eks_admins_iam_role.this_iam_role_name
+  role   = module.eks_admins_iam_role.role.name
   policy = data.aws_iam_policy_document.eks_access.json
 }
