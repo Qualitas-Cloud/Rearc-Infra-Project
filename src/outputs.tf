@@ -21,9 +21,8 @@ output "region" {
 output "oidc_provider_arn" {
   value = module.eks.oidc_provider_arn
 }
-
 output "eks_admin_role_arn" {
-  value       = module.eks_admins_iam_role.role.arn
+  value       = module.eks_admins_iam_role.role_arn
   description = "IAM role ARN for EKS admin access"
 }
 
