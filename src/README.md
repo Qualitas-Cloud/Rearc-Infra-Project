@@ -8,19 +8,46 @@ As the first step, you need to install AWS CLI as we will use the AWS CLI (aws c
 
 Follow the below link to Install AWS CLI.
 
-https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+terraform-eks
+A Rearc repository to create an EKS cluster on AWS using Terraform.
+
+Install AWS CLI
+As the first step, you need to install the AWS CLI, as we will use the aws configure command to connect Terraform with AWS in the next steps.
+
+Follow the link below to install the AWS CLI:
+
+Install AWS CLI
+
 Install Terraform
-Next, Install Terraform using the below link.
+Next, install Terraform using the link below:
 
-https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+Install Terraform
+
 Connect Terraform with AWS
-Its very easy to connect Terraform with AWS. Run aws configure command and provide the AWS Security credentials as shown in the video.
+It's very easy to connect Terraform with AWS. Run the following command and provide your AWS security credentials:
 
+bash
+Copy code
+aws configure
 Initialize Terraform
-Clone the repository and Run terraform init. This will intialize the terraform environment for you and download the modules, providers and other configuration required.
+Clone the repository and run the following command to initialize the Terraform environment. This will download the required modules, providers, and other configurations:
 
-Optionally review the terraform configuration
-Run terraform plan to see the configuration it creates when executed.
+bash
+Copy code
+terraform init
+Optionally Review the Terraform Configuration
+You can review the configuration that will be created by running:
 
-Finally, Apply terraform configuation to create EKS cluster with VPC
+bash
+Copy code
+terraform plan
+Apply Terraform Configuration to Create EKS Cluster with VPC
+Finally, apply the Terraform configuration to create the EKS cluster along with the VPC:
+
+bash
+Copy code
 terraform apply
+Note:
+This repository utilizes Terraform modules to simplify the creation of the EKS cluster, ensuring that the configurations are reusable and manageable.
+
+
